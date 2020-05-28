@@ -32,11 +32,11 @@ setModelCovars <- function(thisModel, thisTaxon = NULL, envDataPath = NULL, qDat
 
   if (is.null(thisTaxon)) stop("setModelCovars: thisTaxon cannot be NULL (default).")
 
-  #if (is.null(envDataPath)) envDataPath <- "/home/RandR/envData/eastOZ"
+  if (is.null(envDataPath)) envDataPath <- "/home/RandR/envData/eastOZ"
 
   if ((!is.null(envDataPath)) && (!dir.exists(envDataPath))) stop("setModelCovars: Cannot find envDataPath")
 
-  #if (is.null(qDataPath)) envDataPath <- "/home/RandR/qData/eastOZ"
+  if (is.null(qDataPath)) envDataPath <- "/home/RandR/qData/eastOZ"
 
   if ((!is.null(envDataPath)) && (!dir.exists(qDataPath))) stop("setModelCovars: Cannot find qDataPath")
 
