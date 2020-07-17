@@ -58,7 +58,10 @@ makeOccPlot <- function(taxonNames = NULL,
 
     this_Taxon <- sub(" ", "_", thisTaxon, fixed = TRUE)
 
-    dataFileName <- paste0(baseDataPath,"/", thisTaxon, "/", this_Taxon, "_herbariumRecords_filtered.csv")
+    if (useTaxonSubfolders)
+      dataFileName <- paste0(baseDataPath,"/", thisTaxon, "/", this_Taxon, "_herbariumRecords_filtered.csv")
+    else
+      dataFileName <- paste0(baseDataPath,"/", this_Taxon, "_herbariumRecords_filtered.csv")
 
     if (!file.exists(dataFileName))
       stop("makeOccPlot: Missing data file. Please check value passed in parameter 'baseDataPath' and that data exists for this taxon.")
