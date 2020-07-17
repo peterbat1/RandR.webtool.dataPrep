@@ -9,6 +9,7 @@ setModelCovars(
   thisTaxon = NULL,
   envDataPath = NULL,
   qDataPath = NULL,
+  numQfiles = 0,
   newThreshold = NULL,
   trace = FALSE
 )
@@ -30,11 +31,11 @@ setModelCovars(
 Set paths to covariate files within an R&R GDM model object to the standard paths for the webtool
 }
 \details{
-{The R&R webtool allows the use of two types of covariate files: Environmental covariates, and ancestry coefficients (Q-files).
+{The R&R webtool allows the use of two types of covariate files: Environmental covariates, and ancestry mixing coefficients (Q-files).
 
 Environmental covariates are stored in /home/RandR/envData with sub-folders for geographically-defined extents. At present, the only sub-folder used is "eastOZ".
 
-Q-file covariates are stored in /home/RandR/qData, and there is also, at present, only one sub-folder 'eastOZ'.
+Q-file covariates are stored on the server in /home/RandR/qData, and there is also, at present, only one sub-folder 'eastOZ'.
 
 This function looks at the covariates listed for the fitted GDM model, confirms that the matching covariate files are present in the necessary location, and then sets the necessary elements of the model object to load raster stacks of covariates from the appropriate folders described above.
 

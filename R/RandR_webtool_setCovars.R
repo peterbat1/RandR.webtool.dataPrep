@@ -13,11 +13,11 @@
 #' @return NULL
 #' @export
 #'
-#' @details {The R&R webtool allows the use of two types of covariate files: Environmental covariates, and ancestry coefficients (Q-files).
+#' @details {The R&R webtool allows the use of two types of covariate files: Environmental covariates, and ancestry mixing coefficients (Q-files).
 #'
 #' Environmental covariates are stored in /home/RandR/envData with sub-folders for geographically-defined extents. At present, the only sub-folder used is "eastOZ".
 #'
-#' Q-file covariates are stored in /home/RandR/qData, and there is also, at present, only one sub-folder 'eastOZ'.
+#' Q-file covariates are stored on the server in /home/RandR/qData, and there is also, at present, only one sub-folder 'eastOZ'.
 #'
 #' This function looks at the covariates listed for the fitted GDM model, confirms that the matching covariate files are present in the necessary location, and then sets the necessary elements of the model object to load raster stacks of covariates from the appropriate folders described above.
 #'
@@ -26,7 +26,7 @@
 #' The updated model object is then saved over the original model object. For safety, it is recommended that a copy is archived in a folder not used by this function.}
 #'
 #' @examples
-setModelCovars <- function(thisModel, thisTaxon = NULL, envDataPath = NULL, qDataPath = NULL, newThreshold = NULL, trace = FALSE)
+setModelCovars <- function(thisModel, thisTaxon = NULL, envDataPath = NULL, qDataPath = NULL, numQfiles = 0, newThreshold = NULL, trace = FALSE)
 {
   if (!(file.exists(thisModel))) stop("setModelCovars: Cannot find GDM object.")
 
@@ -83,7 +83,7 @@ setModelCovars <- function(thisModel, thisTaxon = NULL, envDataPath = NULL, qDat
     if (all(file.exists(Qpaths)))
     {
       md$qdata <- raster::stack(Qpaths)
-      cat(" paths set OK.\n")
+      cat(" found", length(baseQnames), "Q-files; paths set OK.\n")
     }
     else
     {
