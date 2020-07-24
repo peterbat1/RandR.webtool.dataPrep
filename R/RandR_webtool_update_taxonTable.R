@@ -34,11 +34,11 @@ makeTaxonTable <- function(outputPath = NULL)
 
   if (!dir.exists(outputPath)) stop("makeTaxonTable: the folder given in outputPath does not exist.")
 
-  db <- dbConnect(SQLite(), .sqlPath_default)
-  db_taxonTable <- dbReadTable(db, "taxonTable")
-  dbDisconnect(db)
+  db <- RSQLite::dbConnect(SQLite(), .sqlPath_default)
+  db_taxonTable <- RSQLite::dbReadTable(db, "taxonTable")
+  RSQLite::dbDisconnect(db)
 
-  old_taxonTable <- read.csv("/home/peterw/RBG Projects/Restore and Renew/RandR_webtool_dev/LOCAL-rbgsyd-restore-and-renew/rbgsyd-restore-and-renew-data/data/taxonTable.csv", stringsAsFactors = FALSE)
+  ###old_taxonTable <- read.csv("/home/peterw/RBG Projects/Restore and Renew/RandR_webtool_dev/LOCAL-rbgsyd-restore-and-renew/rbgsyd-restore-and-renew-data/data/taxonTable.csv", stringsAsFactors = FALSE)
 
   db_taxonTable <- subset(db_taxonTable, db_taxonTable$rank == "species")
 
@@ -53,5 +53,5 @@ makeTaxonTable <- function(outputPath = NULL)
                                "hasSpecialZones" <- rep("FALSE", nrow(db_taxonTable)),
                                stringsAsFactors = FALSE)
 
-  write.csv(new_taxonTable, paste0(outputPath, "TaxonTable.csv"), row.names = FALSE)
+  write.csv(new_taxonTable, paste0(outputPath, "taxonTable.csv"), row.names = FALSE)
 }
