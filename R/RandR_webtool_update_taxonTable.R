@@ -53,5 +53,5 @@ makeTaxonTable <- function(outputPath = NULL)
                                "hasSpecialZones" <- rep("FALSE", nrow(db_taxonTable)),
                                stringsAsFactors = FALSE)
 
-  write.csv(new_taxonTable, "/home/peterw/RBG Projects/Restore and Renew/dbSandbox/Metadata/newWebtoolTaxonTable.csv", row.names = FALSE)
+  write.csv(new_taxonTable, paste0(outputPath, "TaxonTable.csv"), row.names = FALSE)
 }
