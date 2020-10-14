@@ -10,7 +10,11 @@
 #' @import imager
 #' @import raster
 #' @import crayon
+<<<<<<< HEAD
 #' @import processALA
+=======
+#' @import RandR.db
+>>>>>>> b5a1b83fa6748c79ab63e24de9cf5484878cd1dc
 #' @importFrom magrittr %>%
 #' @importFrom raster stack
 #' @importFrom imager pad resize save.image load.image

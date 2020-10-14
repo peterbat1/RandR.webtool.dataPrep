@@ -100,26 +100,6 @@ checkFileNames <- function(baseFolder = "/home/peterw/Restore and Renew/RandR-we
     failure <- TRUE
   }
 
-  ###############################
-  cat("  Climate change files: ")
-  climChangeInfoNames <- list.files(paste0(baseFolder,"/climateChange"), "*.*")
-  nClimChangeInfoFiles <- length(climChangeInfoNames)
-
-  cat("Found", nClimChangeInfoFiles, "file(s): ")
-
-  # All names have the correct type tag and file extension?
-  if (all(grepl("_climateChange.txt", sppInfoNames)))
-  {
-    cat("PASSED\n")
-    climChangeInfoTaxa <- sort(unique(gsub("_cliamteChange.txt", "", climChangeInfoNames, fixed = TRUE)))
-  }
-  else
-  {
-    cat("FAILED: the following file(s) are not correctly named:\n")
-    print(climChangeInfoNames[which(!grepl("_climateChange.txt", climChangeInfoNames))])
-    failure <- TRUE
-  }
-
 
   ###############################
   cat("  Images - BRECI files: ")
@@ -250,14 +230,14 @@ checkFileNames <- function(baseFolder = "/home/peterw/Restore and Renew/RandR-we
     cat("\nTaxon name matching\n---------------------\n")
 
     categoryList <- c("herbariumRecords", "domain", "gdm", "speciesInfo",
-                      "climateCahnge", "breci", "currentENM", "futureENM", "distribution",
+                      "breci", "currentENM", "futureENM", "distribution",
                       "image", "caption")
 
     # Neat trick to test equality of numeric values in a vector from a post by John on StackOverflow post
     # https://stackoverflow.com/questions/4752275/test-for-equality-among-all-elements-of-a-single-vector
     # Same number of taxa in each data type:
     numTaxa <- c(length(herbRecTaxa), length(domainTaxa), length(gdmTaxa),
-                 length(sppInfoTaxa), length(climChangeInfoTaxa), length(breciTaxa), length(currentENM_Taxa),
+                 length(sppInfoTaxa), length(breciTaxa), length(currentENM_Taxa),
                  length(futureENM_Taxa), length(distributionTaxa),
                  length(imageTaxa), length(captionTaxa))
 
