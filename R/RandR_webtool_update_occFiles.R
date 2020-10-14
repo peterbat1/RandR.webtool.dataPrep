@@ -2,16 +2,16 @@
 # Format occurrence data for the R&R Webtool
 
 #' Update Webtool Herbarium occurrence files
-#' @param theseTaxa Character. Vector of one or more taxon names to be processed.
+#' @param theseTaxa Character. Vector of one or more taxon names to be processed. Default of 'all' causes all acceptedNames in the table pointed to by \emph{taxonTablePath} to be processed.
 #' @param srcFolder Character. Path representing the source folder. See Details for more information.
 #' @param addTaxonToPath Logical. Should the taxon name be added to the srcFolder. Default is FALSE.
 #' @param dstFolder Character. Path representing the destination folder. See Details for more information.
-#' @param taxonTablePath Character. Full path to the webtool taxon table to be used as a source of taxon names.
+#' @param taxonTablePath Character. Full path to the webtool taxon table to be used as a source of taxon names. Only required if \emph{theseTaxa} == 'all',
 #'
 #' @details {
 #' The source path is interpreted as high-level folders within which a folder exists for each taxon listed in the current version of the R&R Webtool \emph{taxonTable} stored at /rbgsyd-restore-and-renew-git-repos/rbgsyd-restore-and-renew-data/data
 #'
-#' Sources files are expected to be as produced by the function \emph{\link{filterALAdata}} in the package RandR.db. The fields in these files are stripped-down for the webtool version.
+#' Sources files are expected to be as produced by the function \emph{\link{filterALAdata}} in the package processALA. The fields in these files are stripped-down for the webtool version.
 #'
 #' The destination folder has no sub-folders; output files are written directly to the folder.
 #' }

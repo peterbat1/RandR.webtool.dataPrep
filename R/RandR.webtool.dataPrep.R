@@ -10,6 +10,7 @@
 #' @import imager
 #' @import raster
 #' @import crayon
+#' @import processALA
 #' @importFrom magrittr %>%
 #' @importFrom raster stack
 #' @importFrom imager pad resize save.image load.image
