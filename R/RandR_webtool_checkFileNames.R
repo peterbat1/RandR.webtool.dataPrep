@@ -100,67 +100,6 @@ checkFileNames <- function(baseFolder = "/home/peterw/Restore and Renew/RandR-we
     failure <- TRUE
   }
 
-
-  ###############################
-  cat("  Images - BRECI files: ")
-  breciNames <- list.files(paste0(baseFolder,"/images/BRECI"), "*.*")
-  nBRECI_Files <- length(breciNames)
-
-  cat("Found", nBRECI_Files, "file(s): ")
-
-  # All names have the correct type tag and file extension?
-  if (all(grepl("_BRECI_Current-2050.png", breciNames)))
-  {
-    cat("PASSED\n")
-    breciTaxa <- sort(unique(gsub("_BRECI_Current-2050.png", "", breciNames, fixed = TRUE)))
-  }
-  else
-  {
-    cat("FAILED: the following file(s) are not correctly named:\n")
-    print(breciNames[which(!grepl("_BRECI_Current-2050.png", breciNames))])
-    failure <- TRUE
-  }
-
-  ###############################
-  cat("  Images - ENM Maps Current files: ")
-  currENM_Names <- list.files(paste0(baseFolder,"/images/ENMmaps"), "*_Current_450.png")
-  nCurrentENM_Files <- length(currENM_Names)
-
-  cat("Found", nCurrentENM_Files, "file(s): ")
-
-  # All names have the correct type tag and file extension?
-  if (all(grepl("_Current_450.png", currENM_Names)))
-  {
-    cat("PASSED\n")
-    currentENM_Taxa <- sort(unique(gsub("_Current_450.png", "", currENM_Names, fixed = TRUE)))
-  }
-  else
-  {
-    cat("FAILED: the following file(s) are not correctly named:\n")
-    print(currENM_Names[which(!grepl("_Current_450.png", currENM_Names))])
-    failure <- TRUE
-  }
-
-  ###############################
-  cat("  Images - ENM Maps Future files: ")
-  futureENM_Names <- list.files(paste0(baseFolder,"/images/ENMmaps"), "*_mean2050_450.png")
-  nFutureENM_Files <- length(futureENM_Names)
-
-  cat("Found", nFutureENM_Files, "file(s): ")
-
-  # All names have the correct type tag and file extension?
-  if (all(grepl("_mean2050_450.png", futureENM_Names)))
-  {
-    cat("PASSED\n")
-    futureENM_Taxa <- sort(unique(gsub("_mean2050_450.png", "", futureENM_Names, fixed = TRUE)))
-  }
-  else
-  {
-    cat("FAILED: the following file(s) are not correctly named:\n")
-    print(futureENM_Names[which(!grepl("_mean2050_450.png", futureENM_Names))])
-    failure <- TRUE
-  }
-
   ###############################
   cat("  Images - species - distribution map files: ")
   distributionNames <- list.files(paste0(baseFolder,"/images/species"), "*_distribution.png")
@@ -230,15 +169,13 @@ checkFileNames <- function(baseFolder = "/home/peterw/Restore and Renew/RandR-we
     cat("\nTaxon name matching\n---------------------\n")
 
     categoryList <- c("herbariumRecords", "domain", "gdm", "speciesInfo",
-                      "breci", "currentENM", "futureENM", "distribution",
-                      "image", "caption")
+                      "futureENM", "distribution", "image", "caption")
 
     # Neat trick to test equality of numeric values in a vector from a post by John on StackOverflow post
     # https://stackoverflow.com/questions/4752275/test-for-equality-among-all-elements-of-a-single-vector
     # Same number of taxa in each data type:
     numTaxa <- c(length(herbRecTaxa), length(domainTaxa), length(gdmTaxa),
-                 length(sppInfoTaxa), length(breciTaxa), length(currentENM_Taxa),
-                 length(futureENM_Taxa), length(distributionTaxa),
+                 length(sppInfoTaxa), length(distributionTaxa),
                  length(imageTaxa), length(captionTaxa))
 
     names(numTaxa) <- categoryList
@@ -251,8 +188,7 @@ checkFileNames <- function(baseFolder = "/home/peterw/Restore and Renew/RandR-we
       cat("  Same number of taxa present in all categories\n")
 
       allTaxa <- c(herbRecTaxa, domainTaxa, gdmTaxa,
-                   sppInfoTaxa, breciTaxa, currentENM_Taxa,
-                   futureENM_Taxa, distributionTaxa,
+                   sppInfoTaxa, distributionTaxa,
                    imageTaxa, captionTaxa)
 
       taxonList <- sort(unique(allTaxa))
