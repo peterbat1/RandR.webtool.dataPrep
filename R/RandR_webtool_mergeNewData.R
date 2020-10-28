@@ -42,14 +42,6 @@ mergeNewData <- function(srcBaseFolder = "/home/peterw/Restore and Renew/RandR-w
   file.copy(srcFiles, dstFiles, overwrite = overwrite)
   cat("  GDM model files: Moved", length(srcFiles), "\n")
 
-  # Merge climate change text
-  srcFolder <- paste0(srcBaseFolder, "/climateChange")
-  srcFiles <- list.files(srcFolder, "*.*", full.names = TRUE)
-  dstFolder <- paste0(dstBaseFolder, "/climateChange")
-  dstFiles <- paste0(dstFolder, "/", basename(srcFiles))
-  file.copy(srcFiles, dstFiles, overwrite = overwrite)
-  cat("  Climate change info files: Moved", length(srcFiles), "\n")
-
   # Merge genetics info text
   srcFolder <- paste0(srcBaseFolder, "/geneticsInfo")
   srcFiles <- list.files(srcFolder, "*.*", full.names = TRUE)
@@ -65,22 +57,6 @@ mergeNewData <- function(srcBaseFolder = "/home/peterw/Restore and Renew/RandR-w
   dstFiles <- paste0(dstFolder, "/", basename(srcFiles))
   file.copy(srcFiles, dstFiles, overwrite = overwrite)
   cat("  Species info text files: Moved", length(srcFiles), "\n")
-
-  # Merge BRECI images
-  srcFolder <- paste0(srcBaseFolder, "/images/BRECI")
-  srcFiles <- list.files(srcFolder, "*.*", full.names = TRUE)
-  dstFolder <- paste0(dstBaseFolder, "/images/BRECI")
-  dstFiles <- paste0(dstFolder, "/", basename(srcFiles))
-  file.copy(srcFiles, dstFiles, overwrite = overwrite)
-  cat("  BRECI image files: Moved", length(srcFiles), "\n")
-
-  # Merge ENMmaps images
-  srcFolder <- paste0(srcBaseFolder, "/images/ENMmaps")
-  srcFiles <- list.files(srcFolder, "*.*", full.names = TRUE)
-  dstFolder <- paste0(dstBaseFolder, "/images/ENMmaps")
-  dstFiles <- paste0(dstFolder, "/", basename(srcFiles))
-  file.copy(srcFiles, dstFiles, overwrite = overwrite)
-  cat("  ENM map files: Moved", length(srcFiles), "\n")
 
   # Merge species and distribution maps images + caption text
   srcFolder <- paste0(srcBaseFolder, "/images/species")

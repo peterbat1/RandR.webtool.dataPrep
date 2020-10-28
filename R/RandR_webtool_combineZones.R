@@ -12,9 +12,9 @@
 #' @examples
 combineZones <- function(theseZones = NULL, outFilename = NULL, outputFormat = "shapefile")
 {
-  if (is.null(theseZones)) stop("combineZones: theseZones msut be given a value")
+  if (is.null(theseZones)) stop("combineZones: theseZones must be given a value")
   if (is.null(outFilename)) stop("combineZones: outFilename cannot be NULL")
-  if (!(outputFormat %in% c("shapefile", "geojson"))) stop("combineZones: otuputFormat must been one of 'shapefile' or 'geojson'")
+  if (!(outputFormat %in% c("shapefile", "geojson"))) stop("combineZones: outputFormat must been one of 'shapefile' or 'geojson'")
 
   if (!all(file.exists(theseZones))) stop("combineZones: At least one polygon object listed in 'theseZones' cannot be found")
 

@@ -1,16 +1,16 @@
 Package: RandR.webtool.dataPrep
 Title: Tools to prepare data for the R&R Webtool
-Version: 0.1
+Version: 0.2
 Authors@R: 
     person(given = "Peter D.",
            family = "Wilson",
            role = c("aut", "cre"),
            email = "peter.d.wilson@rbgsyd.nsw.gov.au")
-Description: A collection of function to prepare and maintain data for the Restore & Renew webtool.
+Description: A collection of functions to prepare and maintain data for the Restore & Renew webtool.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests: 
     knitr,
     rmarkdown

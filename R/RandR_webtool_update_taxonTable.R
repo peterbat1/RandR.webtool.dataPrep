@@ -14,7 +14,7 @@
 #' @return NULL
 #' @export
 #'
-#' @details { The webtoll taoxn table referenced in \emph{taxonTablePath} is updated to included any taxa listed in \emp{newTaxa}. The functions in R-package \link{processALA} are used to provide:
+#' @details { The webtoll taoxn table referenced in \emph{taxonTablePath} is updated to included any taxa listed in \emph{newTaxa}. The functions in R-package \link{processALA} are used to provide:
 #' \itemize{
 #' \item Canonical accepted taxon names derived from the National Species List (NSL) hosted by the Atlas of Living Australia (ALA)
 #' \item Synonyms for accepted names to allow users some flexibility in identifying the taxon of interest
@@ -50,11 +50,10 @@ makeTaxonTable <- function(taxonTablePath = NULL,
   else
     taxonTable <- read.csv(taxonTablePath, stringsAsFactors = FALSE)
 
-<<<<<<< HEAD
   if (is.null(newTaxa))
   {
     cat("No new taxa to be processed: refreshing whole taxon table.\n")
-    taxonList <- taxontable$acceptedName
+    taxonList <- taxonTable$acceptedName
   }
   else
   {
@@ -63,13 +62,6 @@ makeTaxonTable <- function(taxonTablePath = NULL,
   }
 
   cat("\nProcessing:\n")
-=======
-  db <- RSQLite::dbConnect(SQLite(), .sqlPath_default)
-  db_taxonTable <- RSQLite::dbReadTable(db, "taxonTable")
-  RSQLite::dbDisconnect(db)
-
-  ###old_taxonTable <- read.csv("/home/peterw/RBG Projects/Restore and Renew/RandR_webtool_dev/LOCAL-rbgsyd-restore-and-renew/rbgsyd-restore-and-renew-data/data/taxonTable.csv", stringsAsFactors = FALSE)
->>>>>>> b5a1b83fa6748c79ab63e24de9cf5484878cd1dc
 
   newTaxonTable <- NULL
 
@@ -104,9 +96,5 @@ makeTaxonTable <- function(taxonTablePath = NULL,
     }
   }
 
-<<<<<<< HEAD
-  write.csv(newTaxonTable, paste0(outputPath, "taxonTable.csv"), row.names = FALSE)
-=======
-  write.csv(new_taxonTable, paste0(outputPath, "taxonTable.csv"), row.names = FALSE)
->>>>>>> b5a1b83fa6748c79ab63e24de9cf5484878cd1dc
+  write.csv(newTaxonTable, taxonTablePath, row.names = FALSE)
 }
