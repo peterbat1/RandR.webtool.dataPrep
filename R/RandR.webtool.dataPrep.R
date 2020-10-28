@@ -4,15 +4,12 @@
 #'
 #' @name RandR.webtool.dataPrep
 #' @docType package
-#' @import RSQLite
 #' @import leaflet
 #' @import mapview
-#' @import imager
-#' @import raster
 #' @import crayon
-#' @import RandR.db
+#' @import processALA
 #' @importFrom magrittr %>%
-#' @importFrom raster stack
+#' @importFrom raster stack bind extent
 #' @importFrom imager pad resize save.image load.image
 #' @importFrom tools file_ext
 NULL

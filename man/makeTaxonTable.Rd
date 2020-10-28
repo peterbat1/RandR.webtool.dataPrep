@@ -4,7 +4,7 @@
 \alias{makeTaxonTable}
 \title{Update the webtool taxon table}
 \usage{
-makeTaxonTable(outputPath = NULL)
+makeTaxonTable(taxonTablePath = NULL, newTaxa = NULL)
 }
 \arguments{
 \item{outputPath}{Character. Path to a folder into which the new version of \emph{taxonTable.csv} will be written. The folder is created if it does not exist.}
@@ -13,17 +13,27 @@ makeTaxonTable(outputPath = NULL)
 Make a new version of the R&R webtool taxon table from the latest R&R database table \emph{taxonTable}.
 }
 \details{
-{ The R&R database table \emph{taxonTable} is used to make a new version of the table used to 'drive' the webtool by providing:
+{ The webtool taxon table referenced in \emph{taxonTablePath} is updated to included any taxa listed in \emph{newTaxa}. The functions in R-package \link{processALA} are used to provide:
 \itemize{
 \item Canonical accepted taxon names derived from the National Species List (NSL) hosted by the Atlas of Living Australia (ALA)
 \item Synonyms for accepted names to allow users some flexibility in identifying the taxon of interest
-\item Addtional data for display in the webtool pages such as formatted full species name, the family to which each taxon belongs (according to the NSL), URLs to PlantNET and ALA pages for the taxon
+\item Additional data for display in the webtool pages such as formatted full species name, the family to which each taxon belongs (according to the NSL), URLs to PlantNET and ALA pages for the taxon
 }
-The R&R database table is the upstream source for the webtool version, so adding a new taxon to the webtool must start with adding a new taxon to the R&R database version of \emph{taxonTable}. The function \emph{checkTaxonName()} in the package \emph{RandR.db}, with parameter setting 'commit == TRUE', should be used to do this.
-
 }
 }
 \examples{
-\dontrun{makeTaxonTable("/home/folder")}
+\dontrun{
+
+# Update existing taxa:
+makeTaxonTable("/home/folder/taxonTable.csv")
+
+# Add a new taxon:
+makeTaxonTable("/home/folder/taxonTable.csv", "Pimelea spicata")
+
+# Add several taxa:
+makeTaxonTable("/home/folder/taxonTable.csv", c("Pimelea spicata", "Doryphora sassafras", "Bidens pilosa"))
+}
+
+
 
 }

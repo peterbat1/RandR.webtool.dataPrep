@@ -100,6 +100,7 @@ checkFileNames <- function(baseFolder = "/home/peterw/Restore and Renew/RandR-we
     failure <- TRUE
   }
 
+<<<<<<< HEAD
   ###############################
   cat("  Climate change files: ")
   climChangeInfoNames <- list.files(paste0(baseFolder,"/climateChange"), "*.*")
@@ -181,6 +182,8 @@ checkFileNames <- function(baseFolder = "/home/peterw/Restore and Renew/RandR-we
     failure <- TRUE
   }
 
+=======
+>>>>>>> 19038b692d7446fe94d723c597541bc1f1c50bff
   ###############################
   cat("  Images - species - distribution map files: ")
   distributionNames <- list.files(paste0(baseFolder,"/images/species"), "*_distribution.png")
@@ -250,15 +253,23 @@ checkFileNames <- function(baseFolder = "/home/peterw/Restore and Renew/RandR-we
     cat("\nTaxon name matching\n---------------------\n")
 
     categoryList <- c("herbariumRecords", "domain", "gdm", "speciesInfo",
+<<<<<<< HEAD
                       "climateCahnge", "breci", "currentENM", "futureENM", "distribution",
                       "image", "caption")
+=======
+                      "futureENM", "distribution", "image", "caption")
+>>>>>>> 19038b692d7446fe94d723c597541bc1f1c50bff
 
     # Neat trick to test equality of numeric values in a vector from a post by John on StackOverflow post
     # https://stackoverflow.com/questions/4752275/test-for-equality-among-all-elements-of-a-single-vector
     # Same number of taxa in each data type:
     numTaxa <- c(length(herbRecTaxa), length(domainTaxa), length(gdmTaxa),
+<<<<<<< HEAD
                  length(sppInfoTaxa), length(climChangeInfoTaxa), length(breciTaxa), length(currentENM_Taxa),
                  length(futureENM_Taxa), length(distributionTaxa),
+=======
+                 length(sppInfoTaxa), length(distributionTaxa),
+>>>>>>> 19038b692d7446fe94d723c597541bc1f1c50bff
                  length(imageTaxa), length(captionTaxa))
 
     names(numTaxa) <- categoryList
@@ -271,8 +282,7 @@ checkFileNames <- function(baseFolder = "/home/peterw/Restore and Renew/RandR-we
       cat("  Same number of taxa present in all categories\n")
 
       allTaxa <- c(herbRecTaxa, domainTaxa, gdmTaxa,
-                   sppInfoTaxa, breciTaxa, currentENM_Taxa,
-                   futureENM_Taxa, distributionTaxa,
+                   sppInfoTaxa, distributionTaxa,
                    imageTaxa, captionTaxa)
 
       taxonList <- sort(unique(allTaxa))
