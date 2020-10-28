@@ -35,23 +35,26 @@ makeTaxonTable <- function(outputPath = NULL)
   if (!dir.exists(outputPath)) stop("makeTaxonTable: the folder given in outputPath does not exist.")
 
   db <- RSQLite::dbConnect(SQLite(), .sqlPath_default)
-  db_taxonTable <- RSQLite::dbReadTable(db, "taxonTable")
+  db_taxonTable <- RSQLite::dbGetQuery(db, "SELECT acceptedName, genus, species, taxonAuthor, nameFormatted, apcURL, synonyms, APCfamily, nswName, plantNETurl, plantNETfullName, plantNETcommonNames, plantNETfamily, plantNETsubfamily FROM taxonTable WHERE rank = 'species';")
   RSQLite::dbDisconnect(db)
-
+print(colnames(db_taxonTable))
   ###old_taxonTable <- read.csv("/home/peterw/RBG Projects/Restore and Renew/RandR_webtool_dev/LOCAL-rbgsyd-restore-and-renew/rbgsyd-restore-and-renew-data/data/taxonTable.csv", stringsAsFactors = FALSE)
 
-  db_taxonTable <- subset(db_taxonTable, db_taxonTable$rank == "species")
+  #db_taxonTable <- subset(db_taxonTable, db_taxonTable$rank == "species")
 
   # Patch synonyms to prepend formal synonomy with the accepted taxon name. This
   # will match the way the synonomy field was originally configured and reduce the
   # risk of any glitches.
-  db_taxonTable$synonymy <- paste(db_taxonTable$acceptedName, db_taxonTable$synonymy, sep = ";")
+ # db_taxonTable$synonymy <- paste(db_taxonTable$acceptedName, db_taxonTable$synonymy, sep = ";")
 
   #c("acceptedName", "genus", "species", "taxonAuthor", "nameFormatted", "apcURL", "synonymy","isTrueRandR","APCfamily","nswName","plantNETurl", "plantNETfullName", "commonNames", "plantNETfamily", "plantNETsubfamily")
 
-  new_taxonTable <- data.frame(db_taxonTable[, c("acceptedName", "nameFormatted", "apcURL", "synonymy","APCfamily","nswName","plantNETurl", "plantNETfullName", "plantNETcommonNames", "plantNETfamily", "plantNETsubfamily"),],
-                               "hasSpecialZones" <- rep("FALSE", nrow(db_taxonTable)),
+  new_taxonTable <- data.frame(db_taxonTable[, c("acceptedName", "genus", "species", "taxonAuthor","nameFormatted", "apcURL", "synonyms","APCfamily","nswName","plantNETurl", "plantNETfullName", "plantNETcommonNames", "plantNETfamily", "plantNETsubfamily"),],
+                               "hasSpecialZones" = rep("FALSE", nrow(db_taxonTable)),
                                stringsAsFactors = FALSE)
+
+  #emptyInd <- which(new_taxonTable$synonyms == "")
+  #new_taxonTable$synonyms[emptyInd] <- new_taxonTable$acceptedName[emptyInd]
 
   write.csv(new_taxonTable, paste0(outputPath, "taxonTable.csv"), row.names = FALSE)
 }

@@ -13,13 +13,13 @@ update_occFiles(
 )
 }
 \arguments{
-\item{theseTaxa}{Character. Vector of one or more taxon names to be processed.}
+\item{theseTaxa}{Character. Vector of one or more taxon names to be processed. Default of 'all' causes all acceptedNames in the table pointed to by \emph{taxonTablePath} to be processed.}
 
 \item{srcFolder}{Character. Path representing the source folder. See Details for more information.}
 
 \item{dstFolder}{Character. Path representing the destination folder. See Details for more information.}
 
-\item{taxonTablePath}{Character. Full path to the webtool taxon table to be used as a source of taxon names.}
+\item{taxonTablePath}{Character. Full path to the webtool taxon table to be used as a source of taxon names. Only required if \emph{theseTaxa} == 'all',}
 
 \item{addTaxonToPath}{Logical. Should the taxon name be added to the srcFolder. Default is FALSE.}
 }
