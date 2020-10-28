@@ -42,10 +42,9 @@ makeTaxonTable <- function(taxonTablePath = NULL,
 {
   cat("makeTaxonTable\n========================================\n")
 
-
   if (is.null(taxonTablePath)) stop("makeTaxonTable: Please give a value for taxonTablePath.")
 
-  if (!dir.exists(taxonTablePath))
+  if (!dir.exists(dirname(taxonTablePath)))
     stop("makeTaxonTable: the folder given in taxonTablePath does not exist.")
   else
     taxonTable <- read.csv(taxonTablePath, stringsAsFactors = FALSE)
@@ -58,7 +57,7 @@ makeTaxonTable <- function(taxonTablePath = NULL,
   else
   {
     cat("New taxa will be added to the taxon table and existing taxa refreshed.\n")
-    taxonList <- c(taxonTable$acceptedNames, newTaxa)
+    taxonList <- c(taxonTable$acceptedName, newTaxa)
   }
 
   cat("\nProcessing:\n")

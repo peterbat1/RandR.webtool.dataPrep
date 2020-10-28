@@ -11,3 +11,7 @@ eastOZ_extent <<- raster::extent(140.5, 154, -43.74, -9)
 # OZ
 OZ_extent <<- raster::extent(112.9, 154, -43.74, -9)
 
+.onLoad <- function(libname, pkgname)
+{
+  ALA4R::ala_config(caching = "off")
+}
