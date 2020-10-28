@@ -14,7 +14,7 @@
 #' @return NULL
 #' @export
 #'
-#' @details { The webtoll taoxn table referenced in \emph{taxonTablePath} is updated to included any taxa listed in \emph{newTaxa}. The functions in R-package \link{processALA} are used to provide:
+#' @details { The webtool taxon table referenced in \emph{taxonTablePath} is updated to included any taxa listed in \emph{newTaxa}. The functions in R-package \link{processALA} are used to provide:
 #' \itemize{
 #' \item Canonical accepted taxon names derived from the National Species List (NSL) hosted by the Atlas of Living Australia (ALA)
 #' \item Synonyms for accepted names to allow users some flexibility in identifying the taxon of interest

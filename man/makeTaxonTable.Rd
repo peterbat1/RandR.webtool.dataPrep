@@ -13,7 +13,7 @@ makeTaxonTable(taxonTablePath = NULL, newTaxa = NULL)
 Make a new version of the R&R webtool taxon table from the latest R&R database table \emph{taxonTable}.
 }
 \details{
-{ The webtoll taoxn table referenced in \emph{taxonTablePath} is updated to included any taxa listed in \emph{newTaxa}. The functions in R-package \link{processALA} are used to provide:
+{ The webtool taxon table referenced in \emph{taxonTablePath} is updated to included any taxa listed in \emph{newTaxa}. The functions in R-package \link{processALA} are used to provide:
 \itemize{
 \item Canonical accepted taxon names derived from the National Species List (NSL) hosted by the Atlas of Living Australia (ALA)
 \item Synonyms for accepted names to allow users some flexibility in identifying the taxon of interest
