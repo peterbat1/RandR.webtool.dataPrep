@@ -50,20 +50,6 @@ makeTaxonTable <- function(taxonTablePath = NULL,
   else
     taxonTable <- read.csv(taxonTablePath, stringsAsFactors = FALSE)
 
-<<<<<<< HEAD
-  db <- RSQLite::dbConnect(SQLite(), .sqlPath_default)
-  db_taxonTable <- RSQLite::dbGetQuery(db, "SELECT acceptedName, genus, species, taxonAuthor, nameFormatted, apcURL, synonyms, APCfamily, nswName, plantNETurl, plantNETfullName, plantNETcommonNames, plantNETfamily, plantNETsubfamily FROM taxonTable WHERE rank = 'species';")
-  RSQLite::dbDisconnect(db)
-print(colnames(db_taxonTable))
-  ###old_taxonTable <- read.csv("/home/peterw/RBG Projects/Restore and Renew/RandR_webtool_dev/LOCAL-rbgsyd-restore-and-renew/rbgsyd-restore-and-renew-data/data/taxonTable.csv", stringsAsFactors = FALSE)
-
-  #db_taxonTable <- subset(db_taxonTable, db_taxonTable$rank == "species")
-
-  # Patch synonyms to prepend formal synonomy with the accepted taxon name. This
-  # will match the way the synonomy field was originally configured and reduce the
-  # risk of any glitches.
- # db_taxonTable$synonymy <- paste(db_taxonTable$acceptedName, db_taxonTable$synonymy, sep = ";")
-=======
   if (is.null(newTaxa))
   {
     cat("No new taxa to be processed: refreshing whole taxon table.\n")
@@ -82,7 +68,6 @@ print(colnames(db_taxonTable))
   for (thisTaxon in taxonList)
   {
     cat(" ", thisTaxon, "\n")
->>>>>>> 19038b692d7446fe94d723c597541bc1f1c50bff
 
     alaInfo <- processALA::checkTaxonName(thisTaxon)
     if (alaInfo$isValid[1] && alaInfo$isAccepted[1])
@@ -103,16 +88,6 @@ print(colnames(db_taxonTable))
                     plantNETsubfamily = "",
                     hasSpecialZones = FALSE)
 
-<<<<<<< HEAD
-  new_taxonTable <- data.frame(db_taxonTable[, c("acceptedName", "genus", "species", "taxonAuthor","nameFormatted", "apcURL", "synonyms","APCfamily","nswName","plantNETurl", "plantNETfullName", "plantNETcommonNames", "plantNETfamily", "plantNETsubfamily"),],
-                               "hasSpecialZones" = rep("FALSE", nrow(db_taxonTable)),
-                               stringsAsFactors = FALSE)
-
-  #emptyInd <- which(new_taxonTable$synonyms == "")
-  #new_taxonTable$synonyms[emptyInd] <- new_taxonTable$acceptedName[emptyInd]
-
-  write.csv(new_taxonTable, paste0(outputPath, "taxonTable.csv"), row.names = FALSE)
-=======
       newTaxonTable <- rbind(newTaxonTable, newEntry)
     }
     else
@@ -122,5 +97,4 @@ print(colnames(db_taxonTable))
   }
 
   write.csv(newTaxonTable, taxonTablePath, row.names = FALSE)
->>>>>>> 19038b692d7446fe94d723c597541bc1f1c50bff
 }
