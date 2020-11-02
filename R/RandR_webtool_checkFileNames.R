@@ -169,7 +169,7 @@ checkFileNames <- function(baseFolder = "/home/peterw/Restore and Renew/RandR-we
     cat("\nTaxon name matching\n---------------------\n")
 
     categoryList <- c("herbariumRecords", "domain", "gdm", "speciesInfo",
-                      "futureENM", "distribution", "image", "caption")
+                      "distribution", "image", "caption")
 
     # Neat trick to test equality of numeric values in a vector from a post by John on StackOverflow post
     # https://stackoverflow.com/questions/4752275/test-for-equality-among-all-elements-of-a-single-vector
