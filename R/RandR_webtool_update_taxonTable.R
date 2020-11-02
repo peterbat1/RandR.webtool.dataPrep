@@ -19,7 +19,7 @@
 #' \item Canonical accepted taxon names derived from the National Species List (NSL) hosted by the Atlas of Living Australia (ALA)
 #' \item Synonyms for accepted names to allow users some flexibility in identifying the taxon of interest
 #' \item Additional data for display in the webtool pages such as formatted full species name, the family to which each taxon belongs (according to the NSL), URLs to PlantNET and ALA pages for the taxon
-#'}
+#' }
 #' }
 #'
 #' @examples
@@ -60,6 +60,9 @@ makeTaxonTable <- function(taxonTablePath = NULL,
     taxonList <- c(taxonTable$acceptedName, newTaxa)
   }
 
+  zoneInfo <- taxonTable$hasSpecialZones
+  names(zoneInfo) <- taxonTable$acceptedName
+
   cat("\nProcessing:\n")
 
   newTaxonTable <- NULL
@@ -68,9 +71,16 @@ makeTaxonTable <- function(taxonTablePath = NULL,
   {
     cat(" ", thisTaxon, "\n")
 
+    if (is.na(zoneInfo[thisTaxon]))
+      newZoneStatus <- FALSE
+    else
+      newZoneStatus <- zoneInfo[thisTaxon]
+
     alaInfo <- processALA::checkTaxonName(thisTaxon)
     if (alaInfo$isValid[1] && alaInfo$isAccepted[1])
     {
+      plantNET_data <- fetchPlantNET(thisTaxon)
+
       newEntry <- c(acceptedName = alaInfo$acceptedName[1],
                     genus = alaInfo$genus[1],
                     species = alaInfo$specise[1],
@@ -79,13 +89,13 @@ makeTaxonTable <- function(taxonTablePath = NULL,
                     apcURL = paste0("https://bie.ala.org.au/species/", alaInfo$acceptedFullGID[1]),
                     synonyms = alaInfo$synonyms[1],
                     APCfamily = alaInfo$apcFamily[1],
-                    nswName = "",
-                    plantNETurl = "",
-                    plantNETfullName = "",
-                    plantNETcommonNames = "",
-                    plantNETfamily = "",
-                    plantNETsubfamily = "",
-                    hasSpecialZones = FALSE)
+                    nswName = plantNET_data$nswName,
+                    plantNETurl = plantNET_data$plantNETurl,
+                    plantNETfullName = plantNET_data$plantNETfullName,
+                    plantNETcommonNames = plantNET_data$plantNETcommonNames,
+                    plantNETfamily = plantNET_data$plantNETfamily,
+                    plantNETsubfamily = plantNET_data$plantNETsubfamily,
+                    hasSpecialZones = newZoneStatus)
 
       newTaxonTable <- rbind(newTaxonTable, newEntry)
     }

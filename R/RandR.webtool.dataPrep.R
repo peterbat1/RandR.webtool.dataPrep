@@ -12,4 +12,5 @@
 #' @importFrom raster stack bind extent
 #' @importFrom imager pad resize save.image load.image
 #' @importFrom tools file_ext
+#' @import xml2
 NULL
