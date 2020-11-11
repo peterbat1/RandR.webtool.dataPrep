@@ -9,7 +9,8 @@
 #'
 #' Make a new version of the R&R webtool taxon table from the latest R&R database table \emph{taxonTable}.
 #'
-#' @param outputPath Character. Path to a folder into which the new version of \emph{taxonTable.csv} will be written. The folder is created if it does not exist.
+#' @param taxonTablePath Character. Full path to a version of \emph{taxonTable.csv} to be updated.
+#' @param newTaxa Character. One or more taxonomic names to be added to a refreshed taxon table.
 #'
 #' @return NULL
 #' @export
@@ -25,7 +26,7 @@
 #' @examples
 #' \dontrun{
 #'
-#' # Update existing taxa:
+#' # Update existing taxa i.e. no new taxa added:
 #' makeTaxonTable("/home/folder/taxonTable.csv")
 #'
 #' # Add a new taxon:

@@ -7,7 +7,9 @@
 makeTaxonTable(taxonTablePath = NULL, newTaxa = NULL)
 }
 \arguments{
-\item{outputPath}{Character. Path to a folder into which the new version of \emph{taxonTable.csv} will be written. The folder is created if it does not exist.}
+\item{taxonTablePath}{Character. Full path to a version of \emph{taxonTable.csv} to be updated.}
+
+\item{newTaxa}{Character. One or more taxonomic names to be added to a refreshed taxon table.}
 }
 \description{
 Make a new version of the R&R webtool taxon table from the latest R&R database table \emph{taxonTable}.
@@ -24,7 +26,7 @@ Make a new version of the R&R webtool taxon table from the latest R&R database t
 \examples{
 \dontrun{
 
-# Update existing taxa:
+# Update existing taxa i.e. no new taxa added:
 makeTaxonTable("/home/folder/taxonTable.csv")
 
 # Add a new taxon:
