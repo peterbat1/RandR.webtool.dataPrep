@@ -25,10 +25,10 @@ fetchPlantNET <- function(thisTaxon, verbose = FALSE)
 
   if (verbose) cat("    Original taxon:", thisTaxon,"\n")
 
-  # Trim interim names to 4 parts as this seems to choke PlantNET
+  # Trim interim names to 2 parts as PlantNET cannot handle infra-specific taxa
   nameBits <- unlist(strsplit(thisTaxon, " "))
-  if (length(nameBits) > 4)
-    thisTaxon <- paste(nameBits[1:4], collapse = " ")
+  if (length(nameBits) > 2)
+    thisTaxon <- paste(nameBits[1:2], collapse = " ")
 
   if (verbose) cat("    Trimmed taxon:", thisTaxon, "\n")
 
