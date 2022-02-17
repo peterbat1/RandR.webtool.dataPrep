@@ -5,8 +5,9 @@
 #'
 #' @param thisModel Character. Full path the .Rd file for an R&R GDM model object.
 #' @param thisTaxon Character. Name of the taxon corresponding to the model given in \emph{thisModel}.
-#' @param envDataPath Character. Full path to the folder of environmental covariate layers. When environmental covariates are present in the model object, a default of NULL sets the path to the standard Linux environment on which the webtool operates (i.e. '/home/RandR/envData/eastOZ').
-#' @param qDataPath Character. Full path to the folder of environmental ancestral mixing coefficent (Q-data covariate) layers. When Q covariates are present in the model object, a default of NULL sets the path to the standard Linux environment on which the webtool operates (i.e. '/home/RandR/qData/eastOZ').
+#' @param envDataPath Character. OPTIONAL. Full path to the folder of environmental covariate layers. When environmental covariates are present in the model object, a default of NULL sets the path to the standard Linux environment on which the webtool operates (i.e. '/home/RandR/envData/eastOZ').
+#' @param qDataPath Character. OPTIONAL. Full path to the folder of environmental ancestral mixing coefficent (Q-data covariate) layers. When Q covariates are present in the model object, a default of NULL sets the path to the standard Linux environment on which the webtool operates (i.e. '/home/RandR/qData/eastOZ').
+#' @param numQfiles Numeric. The number of Q-files to be included for this GDM.
 #' @param threshold Numeric. A value between 0 and 1 to replace the threshold value of the model object. Default of NULL leaves the threshold unchanged.
 #' @param trace Logical. Should some hopefully useful information be output to the terminal? Default is FALSE.
 #'
@@ -108,7 +109,7 @@ setModelCovars <- function(thisModel, thisTaxon = NULL, envDataPath = NULL, qDat
     }
     else
     {
-      Epaths <- paste0(envDataPatch, "/", baseEnames, ".tif")
+      Epaths <- paste0(envDataPath, "/", baseEnames, ".tif")
       print(Epaths)
 
       if (all(file.exists(Epaths)))

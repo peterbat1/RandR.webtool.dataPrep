@@ -19,9 +19,11 @@ setModelCovars(
 
 \item{thisTaxon}{Character. Name of the taxon corresponding to the model given in \emph{thisModel}.}
 
-\item{envDataPath}{Character. Full path to the folder of environmental covariate layers. When environmental covariates are present in the model object, a default of NULL sets the path to the standard Linux environment on which the webtool operates (i.e. '/home/RandR/envData/eastOZ').}
+\item{envDataPath}{Character. OPTIONAL. Full path to the folder of environmental covariate layers. When environmental covariates are present in the model object, a default of NULL sets the path to the standard Linux environment on which the webtool operates (i.e. '/home/RandR/envData/eastOZ').}
 
-\item{qDataPath}{Character. Full path to the folder of environmental ancestral mixing coefficent (Q-data covariate) layers. When Q covariates are present in the model object, a default of NULL sets the path to the standard Linux environment on which the webtool operates (i.e. '/home/RandR/qData/eastOZ').}
+\item{qDataPath}{Character. OPTIONAL. Full path to the folder of environmental ancestral mixing coefficent (Q-data covariate) layers. When Q covariates are present in the model object, a default of NULL sets the path to the standard Linux environment on which the webtool operates (i.e. '/home/RandR/qData/eastOZ').}
+
+\item{numQfiles}{Numeric. The number of Q-files to be included for this GDM.}
 
 \item{trace}{Logical. Should some hopefully useful information be output to the terminal? Default is FALSE.}
 

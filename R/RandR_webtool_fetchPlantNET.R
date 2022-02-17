@@ -19,7 +19,7 @@
 #'
 #' @examples
 #' \dontrun{}
-fetchPlantNET <- function(thisTaxon, verbose = FALSE)
+fetchPlantNET <- function(thisTaxon, synonyms = "", verbose = FALSE)
 {
   if (verbose) cat("Fetching PlantNET record\n")
 
@@ -32,83 +32,103 @@ fetchPlantNET <- function(thisTaxon, verbose = FALSE)
 
   if (verbose) cat("    Trimmed taxon:", thisTaxon, "\n")
 
-  thisURL <- paste0("http://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?page=nswfl&lvl=sp&name=", gsub(" ", "~", thisTaxon, fixed = TRUE))
-  if (verbose) cat("    PlanrNET URL:", thisURL, "\n")
-
-  stuff <- httr::GET(thisURL)
-
-  responseCode <- stuff$status_code
-  if (verbose) cat("    Response code =", responseCode, "\n")
-
-  if (responseCode == 200)
+  if (synonyms != "")
   {
-    nswName <- thisTaxon
+    parsedSynonyms <- c(thisTaxon, unlist(strsplit(synonyms, ";")))
+  }
+  else
+    parsedSynonyms <- thisTaxon
 
-    guts <- httr::content(stuff)
+  if (verbose) cat("parsedSynonyms =", paste(parsedSynonyms, collapse = ", "), "\n")
 
-    if (grepl("No entry in Flora of NSW", guts, fixed = TRUE))
+  n <- length(parsedSynonyms)
+  i <- 1
+  found <- FALSE
+
+  while((i <= n) & !found)
+  {
+    if (verbose) cat("Testing", parsedSynonyms[i], ":\n")
+
+    nswName <- parsedSynonyms[i]
+    thisURL <- paste0("https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?page=nswfl&lvl=sp&name=", gsub(" ", "~", nswName, fixed = TRUE))
+    if (verbose) cat("    PlantNET URL:", thisURL, "\n")
+
+    stuff <- httr::GET(thisURL)
+    responseCode <- stuff$status_code
+    if (verbose) cat("    Response code =", responseCode, "\n")
+    if (responseCode == 200)
     {
-      if (verbose) cat("      Found 'No entry in Flora of NSW' in response\n")
-      nswName <- "Not_accepted"
-      thisURL <- "No_data"
-      #plantNETurl <- "No_data"
-      plantNETcommonNames <- "No_data"
-      plantNETfamily <- "No_data"
-      plantNETsubfamily <- "No_data"
-      plantNETfullname <- "No_data"
-    }
-    else
-    {
-      if (verbose) cat("      Processing content in response\n")
+      guts <- rawToChar(stuff$content)
 
-      topSplit <- xml2::xml_children(guts)
-      tables <- xml2::xml_find_all(topSplit[2], ".//table")
-      usefulStuff <- xml2::xml_contents(xml_contents(tables[5])[1])
-      part2 <- xml_find_all(xml2::xml_find_all(usefulStuff, ".//table")[2], ".//tr")
-      strBits <- strsplit(xml2::xml_text(part2), "Family", fixed = TRUE)
-      plantNETfullname <- stringr::str_squish(strBits[[1]][1])
-
-      familyBits <- trimws(unlist(strsplit(strBits[[1]][2], "Subfamily ", fixed = TRUE)))
-
-      plantNETfamily <- familyBits[1]
-
-      plantNETsubfamily <- "No_data"
-      if (length(familyBits) == 2)
+      if (grepl("No entry in Flora of NSW", guts, fixed = TRUE))
       {
-        plantNETsubfamily <- familyBits[2]
-      }
-
-      divs <- xml2::xml_find_all(topSplit[2], ".//div")
-
-      if (length(divs) == 2)
-      {
-        plantNETcommonNames <- gsub(",", ";", stringr::str_to_title(trimws(sub("Common name: ", "", xml2::xml_text(divs[1]), fixed = TRUE))), fixed = TRUE)
+        if (verbose) cat("      Found 'No entry in Flora of NSW' in response\n")
+        i <- i + 1
       }
       else
       {
-        plantNETcommonNames <- "No_data"
+        # We got a result...so bail out and process the info
+        found <- TRUE
       }
     }
+    else
+    {
+      if (verbose) cat("    Failed response from PlantNET: HTML code =",responseCode,"\n")
+
+      i <- n # Force a stop but maintain state of 'found'
+    }
   }
-  else
+
+  if (!found)
   {
-    if (verbose) cat("    Failed response from PlantNET: HTML code =",responseCode,"\n")
     nswName <- "Not_accepted"
     thisURL <- "No_data"
-    #plantNETurl = "No_data"
-    plantNETcommonNames = "No_data"
+    #plantNETurl <- "No_data"
+    plantNETcommonNames <- "No_data"
     plantNETfamily <- "No_data"
     plantNETsubfamily <- "No_data"
     plantNETfullname <- "No_data"
   }
+  else
+  {
+    if (verbose) cat("      Processing content in response\n")
 
-  PlantNET_result <- list("nswName" = nswName,
+    topSplit <- xml2::xml_children(xml2::read_html(guts))
+    tables <- xml2::xml_find_all(topSplit[2], ".//table")
+    usefulStuff <- xml2::xml_contents(xml2::xml_contents(tables[5])[1])
+    part2 <- xml2::xml_find_all(xml2::xml_find_all(usefulStuff, ".//table")[2], ".//tr")
+    strBits <- strsplit(xml2::xml_text(part2), "Family", fixed = TRUE)
+    plantNETfullname <- stringr::str_squish(strBits[[1]][1])
+
+    familyBits <- trimws(unlist(strsplit(strBits[[1]][2], "Subfamily ", fixed = TRUE)))
+
+    plantNETfamily <- familyBits[1]
+
+    plantNETsubfamily <- "No_data"
+    if (length(familyBits) == 2)
+    {
+      plantNETsubfamily <- familyBits[2]
+    }
+
+    divs <- xml2::xml_find_all(topSplit[2], ".//div")
+
+    if (length(divs) == 2)
+    {
+      plantNETcommonNames <- gsub(",", ";", stringr::str_to_title(trimws(sub("Common name: ", "", xml2::xml_text(divs[1]), fixed = TRUE))), fixed = TRUE)
+    }
+    else
+    {
+      plantNETcommonNames <- "No_data"
+    }
+  }
+
+  plantNET_result <- list("nswName" = nswName,
                           "plantNETurl" = thisURL,
                           "plantNETfullName" = plantNETfullname,
                           "plantNETcommonNames" = plantNETcommonNames,
                           "plantNETfamily" = plantNETfamily,
                           "plantNETsubfamily" = plantNETsubfamily)
 
-  return(PlantNET_result)
+  return(plantNET_result)
 }
 

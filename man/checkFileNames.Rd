@@ -12,9 +12,9 @@ checkFileNames(
 )
 }
 \arguments{
-\item{baseFolder}{Character. Path to the folder below which the staging data sub-foddlers are found. The default value is the path to the staging folder on Linux PC Desert OEH34596.}
+\item{baseFolder}{Character. Path to the folder below which the staging data sub-folders are found. The default value is the path to the staging folder on Linux PC Desert OEH34596.}
 
-\item{taxonTablePath}{Character. Path to the current version of the webtool taxon table (ideally, recently cloned or pulled fom the GitLab repo)}
+\item{taxonTablePath}{Character. Path to the current version of the webtool taxon table (ideally, recently cloned or pulled from the GitLab repo)}
 }
 \value{
 

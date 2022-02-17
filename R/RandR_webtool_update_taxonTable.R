@@ -80,14 +80,14 @@ makeTaxonTable <- function(taxonTablePath = NULL,
     alaInfo <- processALA::checkTaxonName(thisTaxon)
     if (alaInfo$isValid[1] && alaInfo$isAccepted[1])
     {
-      plantNET_data <- fetchPlantNET(thisTaxon)
+      plantNET_data <- fetchPlantNET(thisTaxon, ifelse(alaInfo$synonyms[1] == "none", "", alaInfo$synonyms[1]), verbose = TRUE)
 
       newEntry <- c(acceptedName = alaInfo$acceptedName[1],
                     genus = alaInfo$genus[1],
-                    species = alaInfo$specise[1],
+                    species = alaInfo$specificEpithet[1],
                     taxonAuthor = alaInfo$taxonAuthor[1],
                     nameFormatted = alaInfo$formattedAcceptedName[1],
-                    apcURL = paste0("https://bie.ala.org.au/species/", alaInfo$acceptedFullGID[1]),
+                    apcURL = paste0("https://bie.ala.org.au/species/", alaInfo$acceptedFullGUID[1]),
                     synonyms = alaInfo$synonyms[1],
                     APCfamily = alaInfo$apcFamily[1],
                     nswName = plantNET_data$nswName,

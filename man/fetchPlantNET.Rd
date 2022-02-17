@@ -4,7 +4,7 @@
 \alias{fetchPlantNET}
 \title{Fetch PlantNET information for a taxon}
 \usage{
-fetchPlantNET(thisTaxon, verbose = FALSE)
+fetchPlantNET(thisTaxon, synonyms = "", verbose = FALSE)
 }
 \arguments{
 \item{thisTaxon}{Character string representign the name of the taxon to be fetched}

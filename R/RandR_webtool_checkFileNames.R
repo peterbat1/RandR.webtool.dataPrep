@@ -4,8 +4,8 @@
 #'
 #' Checks for each file type having the required basic file name structure and that the species name component of filenames in each file type matches.
 #'
-#' @param baseFolder Character. Path to the folder below which the staging data sub-foddlers are found. The default value is the path to the staging folder on Linux PC Desert OEH34596.
-#' @param taxonTablePath Character. Path to the current version of the webtool taxon table (ideally, recently cloned or pulled fom the GitLab repo)
+#' @param baseFolder Character. Path to the folder below which the staging data sub-folders are found. The default value is the path to the staging folder on Linux PC Desert OEH34596.
+#' @param taxonTablePath Character. Path to the current version of the webtool taxon table (ideally, recently cloned or pulled from the GitLab repo)
 #' @return
 #' @export
 #'
