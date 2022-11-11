@@ -1,7 +1,7 @@
 
 #' Format species information images
 #'
-#' Apply operations such as reszing or padding (with black) so that jpg images to accompany species information are correctly and uniformly formatted.
+#' Apply operations such as resizing or padding (with black) so that jpg images to accompany species information are correctly and uniformly formatted.
 #'
 #' @param sourceFolder Character. Full path to the folder in which jpg images for processing will be found.
 #' @param outputFolder Character. Full path to the folder to store processed versions of input images. If the folder is not present, it will be created.
