@@ -30,7 +30,7 @@ Update Webtool Herbarium occurrence files
 {
 The source path is interpreted as high-level folders within which a folder exists for each taxon listed in the current version of the R&R Webtool \emph{taxonTable} stored at /rbgsyd-restore-and-renew-git-repos/rbgsyd-restore-and-renew-data/data
 
-Sources files are expected to be as produced by the function \emph{\link{filterALAdata}} in the package processALA. The fields in these files are stripped-down for the webtool version.
+Source files are expected to be as produced by the function \emph{\link{filterALAdata}} in the package processALA. The fields in these files are stripped-down for the webtool version.
 
 The destination folder has no sub-folders; output files are written directly to the folder.
 }

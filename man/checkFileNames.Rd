@@ -5,19 +5,16 @@
 \title{Data integrity check}
 \usage{
 checkFileNames(
- 
-    baseFolder = "/home/peterw/Restore and Renew/RandR-webtool-maintenance/New species staging",
- 
-    taxonTablePath = "/home/peterw/Restore and Renew/RandR_webtool_dev/rbgsyd-restore-and-renew-git-repos/rbgsyd-restore-and-renew-data/data/taxonTable.csv"
+  baseFolder =
+    "/home/peterw/Restore and Renew/RandR-webtool-maintenance/New species staging",
+  taxonTablePath =
+    "/home/peterw/Restore and Renew/RandR_webtool_dev/rbgsyd-restore-and-renew-git-repos/rbgsyd-restore-and-renew-data/data/taxonTable.csv"
 )
 }
 \arguments{
 \item{baseFolder}{Character. Path to the folder below which the staging data sub-folders are found. The default value is the path to the staging folder on Linux PC Desert OEH34596.}
 
 \item{taxonTablePath}{Character. Path to the current version of the webtool taxon table (ideally, recently cloned or pulled from the GitLab repo)}
-}
-\value{
-
 }
 \description{
 Checks for each file type having the required basic file name structure and that the species name component of filenames in each file type matches.

@@ -13,5 +13,5 @@ OZ_extent <<- raster::extent(112.9, 154, -43.74, -9)
 
 .onLoad <- function(libname, pkgname)
 {
-  ALA4R::ala_config(caching = "off")
+  galah::galah_config(caching = FALSE)
 }

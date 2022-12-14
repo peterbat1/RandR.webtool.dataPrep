@@ -13,9 +13,6 @@ combineZones(theseZones = NULL, outFilename = NULL, outputFormat = "shapefile")
 
 \item{outputFormat}{Character. Specify which file format to use for the output: "shapefile" (default) or "geojson" are the only ones supported at present}
 }
-\value{
-
-}
 \description{
 Combine spatial polygons into a single layer
 }

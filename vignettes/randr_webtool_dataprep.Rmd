@@ -110,7 +110,7 @@ This function is designed to excise one or more polygons from the GDM bounds pol
 
 ### fetchPlantNET
 
-Search for a matching taxon on __PlantNET__ and, if found, return a named list containing useful information extracted from the returned web page. No resolvable name returns "No_data" list elements.
+Searches for a matching taxon on __PlantNET__ and, if found, return a named list containing useful information extracted from the returned web page. No resolvable name returns "No_data" list elements.
 
 
 ### mergeNewData

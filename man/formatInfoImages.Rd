@@ -12,7 +12,7 @@ formatInfoImages(sourceFolder = NULL, outputFolder = NULL)
 \item{outputFolder}{Character. Full path to the folder to store processed versions of input images. If the folder is not present, it will be created.}
 }
 \description{
-Apply operations such as reszing or padding (with black) so that jpg images to accompany species information are correctly and uniformly formatted.
+Apply operations such as resizing or padding (with black) so that jpg images to accompany species information are correctly and uniformly formatted.
 }
 \details{
 { JPG image files which are shown as part of species information on the webtool have a target format of 576 pixels (width) x 500 pixels (height), and an aspect ratio of 1.152. Images are resized using the original image's aspect ratio to determine if the target will be width or height; the image aspect ratio is 'respected' during the resizing. If padding must be applied to acheive the target image dimensions, this is applied symmetrically on all axes. The padding colour is 'black'.}

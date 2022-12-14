@@ -5,10 +5,10 @@
 \title{Merge new data}
 \usage{
 mergeNewData(
- 
-    srcBaseFolder = "/home/peterw/Restore and Renew/RandR-webtool-maintenance/New species staging",
- 
-    dstBaseFolder = "/home/peterw/Restore and Renew/RandR_webtool_dev/rbgsyd-restore-and-renew-git-repos/rbgsyd-restore-and-renew-data/data",
+  srcBaseFolder =
+    "/home/peterw/Restore and Renew/RandR-webtool-maintenance/New species staging",
+  dstBaseFolder =
+    "/home/peterw/Restore and Renew/RandR_webtool_dev/rbgsyd-restore-and-renew-git-repos/rbgsyd-restore-and-renew-data/data",
   overwrite = FALSE
 )
 }
@@ -18,9 +18,6 @@ mergeNewData(
 \item{dstBaseFolder}{Character. Path to the base folder of the local clone of the GitLab R&R Webtool \emph{DATA} repository.}
 
 \item{overwrite}{Logical. Should files in the destiantion folder be overwritten? Default is FALSE.}
-}
-\value{
-
 }
 \description{
 Merge new data into the locally cloned DATA repository.
