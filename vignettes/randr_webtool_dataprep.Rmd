@@ -3,9 +3,9 @@ title: "R&R Webtool Data Preparation Package"
 author: "Peter D. Wilson"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
   classoption: a4paper
 vignette: "%\\VignetteIndexEntry{R&R Webtool Data Preparation Package} %\\VignetteEngine{knitr::rmarkdown}
   %\\VignetteEncoding{UTF-8}\n"
@@ -15,23 +15,25 @@ vignette: "%\\VignetteIndexEntry{R&R Webtool Data Preparation Package} %\\Vignet
 This *R*-package contains utility functions to easily and consistently perform several important
 tasks required to prepare data for uploading to the R&R Webtool GitLab repositories. The R&R Webtool Maintenance Manual
 gives full documentation of the design of the webtool, describes how each data element for a webtool taxon is
-prepared, and gives procedures to upload the output from functions in this package to the GitLab repositories which generate the publicly visible webtool. Please consult that document for both an overview and precise details of tasks to be performed by each
-function in this package.
+prepared, and gives procedures to upload the output from functions in this package to the GitLab repositories which generate the publicly visible webtool. **Please consult that document for both an overview of the mechanics of the webtool, a description of the workflow, and precise details of tasks to be performed by each function in this package.**
 
-> A copy of the R&R Webtool Maintenance Manual is always available on the N-drive here:
->   N:\\Evolutionary Ecology\\Restore & Renew\\Webtool R&R\\Documentation
+> A copy of the R&R Webtool Maintenance Manual is available on the ReCER Sharepoint in the *Restore and Renew* folder and then the *Webtool maintenance* subfolder.
 
 The functions and associated tasks included in this package are listed in the table below. See the section for each function later in this document for a detailed description of the function and examples of its use.
 
-Function         |   Task(s)
------------------|-------------------------------------------
-formatInfoImages | Scale and/or crop jpg-format images for the species information section
-showModelCovars  | Show the current GDM model covariates and paths to covariate data files
-setModelCovars   | Set GDM model covariate paths to structure used on the device hosting the R&R webtool *R*-package. GDM model threshold may also be set to a new value
-update_occFiles  | Update filtered ALA herbarium data files for a set of taxa
-makeOccPlot      | Make leaflet maps as png images showing filtered ALA herbarium record distribution for a set of taxa
-makeBRECIplots   | Generate png files of BRECI plots for a set of taxa
-trim_GDM_domain  | Trim an R&R GDM model domain polygon using special zone information
+Function            |   Task(s)
+--------------------|-------------------------------------------
+formatInfoImages    | Scale and/or crop jpg-format images for the species information section
+showModelCovars     | Show the current GDM model covariates and paths to covariate data files
+setModelCovars      | Set GDM model covariate paths to structure used on the device hosting the R&R webtool *R*-package. GDM model threshold may also be set to a new value
+update_occFiles     | Update filtered ALA herbarium data files for a set of taxa
+makeOccPlot         | Make leaflet maps as png images showing filtered ALA herbarium record distribution for a set of taxa
+trim_GDM_domain     | Trim an R&R GDM model domain polygon using special zone information
+fetchPlantNET       | Search for a matching taxon on PlantNET and, if found, return a named list containing useful information extracted from the return web page
+makeTaxonTable      |
+mergeNewData        |
+combineZones        |
+
 
 ## The functions
 
